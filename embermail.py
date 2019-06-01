@@ -1,12 +1,15 @@
 import auth
 import input_validation
 
-def proccess_email(uid,sender,subject,labels):
+def proccess_email(uid,time,sender,to,subject,labels):
+    print uid,input_validation.to(to)
 
     email_details = '{"uid":"' + uid + \
+                    '","time":"' + input_validation.time(time) + \
                     '","sender":"' + input_validation.sender(sender) + \
-                    '","subject":"' + input_validation.subject(subject) + \
-                    '","labels":[' + input_validation.labels(labels) + ']}'
+                    '","to":[' + input_validation.to(to) + ']' + \
+                    ',"subject":"' + input_validation.subject(subject) + \
+                    '","labels":[' + input_validation.labels(labels)+ ']}'
 
     return email_details
 
@@ -20,8 +23,8 @@ def download_emails():
         writefile = "emails/"+username + "_"+ email.uid +'.json'
         f = open(writefile, "w")
         email.fetch()
-        email_details = proccess_email(email.uid,email.fr,email.subject,email.labels)
-        f.write(email_details +"\n")
+        email_details = proccess_email(email.uid,email.sent_at,email.fr,email.to,email.subject,email.labels)
+        f.write(email_details)
         f.close()
     session.logout()
 
