@@ -6,19 +6,24 @@ def sender(email_sender):
 
     return sender
 
+def subject(email_subject):
+    subject_unicode = unicode(email_subject)
+    subject_ascii = subject_unicode.encode('utf8', 'replace')
+    subject = re.sub('[\\"+\n\r]', '', subject_ascii)
+
+    return subject
+
 def labels(email_labels):
     labels = ""
 
+
     for label in email_labels:
+        clean_label = re.sub('[\\\]', '', label)
         if label != None:
             if label != email_labels[-1]:
-                labels = labels + '"' + label + '"' + ","
+                labels = labels + '"' + clean_label + '"' + ","
             if label == email_labels[-1]:
-                labels = labels + '"' + label + '"'
+                labels = labels + '"' + clean_label + '"'
 
     return labels
 
-def subject(email_subject):
-    subject_unicode = unicode(email_subject)
-    subject = subject_unicode.encode('utf8', 'replace')
-    return subject
