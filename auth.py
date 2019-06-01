@@ -15,10 +15,10 @@ def token():
     print username, access_token
     session = gmail.authenticate(username, access_token)
 
-    return session
+    return session, username
 
 def password():
     username, password, access_token = get_creds("./config.json")
     session = gmail.login(username, password)
     # print g.logged_in  # Should be True, AuthenticationError if login fails
-    return session
+    return session, username
