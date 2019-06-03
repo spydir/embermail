@@ -1,0 +1,5 @@
+{
+    "users":{
+        "user1":{"username":"<email address>","password":"<application password","access_token":"test"}
+         }
+}

@@ -40,7 +40,6 @@ def sort_values(values):
     sorted_values = sorted(values_list,reverse=True)
     return sorted_values
 
-
 def analyze(dir):
     files = read_dir(dir)
     senders = get_values(files,'sender')
