@@ -1,5 +1,6 @@
 import auth
 import input_validation
+import analyze
 
 def proccess_email(uid,time,sender,to,subject,labels):
     print uid,input_validation.to(to)
@@ -24,10 +25,13 @@ def download_emails():
         f = open(writefile, "w")
         email.fetch()
         email_details = proccess_email(email.uid,email.sent_at,email.fr,email.to,email.subject,email.labels)
+        print input_validation.subject(email.subject)
         f.write(email_details)
         f.close()
     session.logout()
 
     return emails
 
-download_emails()
+# download_emails()
+analyze.analyze("./emails")
+
