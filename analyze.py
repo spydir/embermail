@@ -1,7 +1,7 @@
 import json
 import os
+import itertools
 import re
-import pandas
 
 def read_dir(dir):
 
@@ -31,29 +31,20 @@ def get_values(files,key):
 
     return list
 
-def number_of_subjects(files):
-    list = []
+def sort_values(values):
+    values_list = []
+    for key, value in itertools.groupby(sorted(values)):
+        item = len(list(value)), key
+        values_list.append(item)
 
-    for file in files:
-        f = open(file,'r')
-        string = re.sub(r"[^a-zA-Z0-9{}\"\',:\[\]!@#$%^&*()-_=+;<>?/]+",' ', f.read())
-        try:
-            parsed_json = json.loads(string)
-            list.append(parsed_json['subject'])
-            print parsed_json['subject']
-        except ValueError:
-            print ValueError, file
-
-    # my_series = pandas.Series(list)
-    # count = my_series.value_counts()
-    # print len(list)
-    # print count
+    sorted_values = sorted(values_list,reverse=True)
+    return sorted_values
 
 
 def analyze(dir):
     files = read_dir(dir)
-    values = get_values(files,'sender')
+    senders = get_values(files,'sender')
+    subjects = get_values(files, 'subject')
 
-    for value in values:
-        print value
+    print sort_values(senders)
 
