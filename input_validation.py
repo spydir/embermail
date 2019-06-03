@@ -28,7 +28,7 @@ def to(email_to):
 def subject(email_subject):
     subject_unicode = unicode(email_subject)
     subject_ascii = subject_unicode.encode('utf8', 'replace')
-    subject = re.sub(r'(?<!\\)\\(?!["\\/bfnrt]|u[0-9a-fA-F]{4})', r'', subject_ascii)
+    subject = re.sub(r"[^a-zA-Z0-9{}\"\',:\[\]!@#$%^&*()-_=+;<>?/]+", ' ', subject_ascii)
 
     return subject
 
