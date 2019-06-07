@@ -54,22 +54,43 @@ def proccess_email(uid,time,sender,to,subject,labels,flags):
     return email_details
 
 
-def comapare_dirs(dir1,dir2):
-    roots1, files1, paths1 = read_dir(dir1)
-    roots2, files2, paths2 = read_dir(dir2)
+def comapare_dirs(parentdir):
 
-    for i in list(set(files1)&set(files2)):
+    proots, pfiles, ppaths = read_dir(parentdir)
+    roots = sorted(set(proots))
+
+    print roots[-2],roots[-1]
+
+    roots1, files1, paths1 = read_dir(roots[-2])
+    roots2, files2, paths2 = read_dir(roots[-1])
+
+    for i in sorted(set(files1)&set(files2)):
         string1 = roots1[0] + '/' + i
         string2 = roots2[0] + '/' + i
-        print email_diff(string1, string2)
+
+
+        diff = email_diff(string1, string2)
+
+        if diff != {}:
+            print diff
 
 
 def email_diff(email1, email2):
-
-    e1 = open(email1,'r')
-    e2 = open(email2,'r')
+    difference = {}
 
 
-    difference = diff(json.loads(e1.read()), json.loads(e2.read()))
+
+    try:
+        e1 = json.loads(open(email1, 'r').read())
+        e2 = json.loads(open(email2, 'r').read())
+        difference = diff(e1, e2, syntax='explicit')
+        difference = e1['uid'], difference
+
+    except ValueError:
+        print ValueError
+
+    except UnboundLocalError:
+        print UnboundLocalError
+
 
     return difference
