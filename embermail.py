@@ -1,12 +1,7 @@
 # !/usr/bin/env python
 #
 
-# import modules used here -- sys is a very standard one
-import auth
-import input_validation
-import analyze
-import sys, argparse, logging
-
+import analyze, argparse, logging, downloads
 
 # Gather our code in a main() function
 def main(args, loglevel):
@@ -15,8 +10,6 @@ def main(args, loglevel):
     # TODO Replace this with your actual code.
 
 
-# Standard boilerplate to call the main() function to begin
-# the program.
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         description="Downloads gmail metatdata and does analysis")
@@ -69,19 +62,17 @@ if __name__ == '__main__':
         analyze.analyze("./emails")
 
     if args.download:
-        analyze.download_emails('./all_mail/')
+        downloads.download('./all_mail/','all_mail')
 
     if args.inbox:
-        analyze.inbox_unread('./inbox/')
+        downloads.download('./inbox/','inbox')
 
     if args.unread:
-        analyze.inbox_unread('./unread/')
+        downloads.download('./unread/', 'unread')
 
     if args.inboxunread:
-        analyze.inbox_unread('./inbox-unread/')
+        downloads.download('./inbox_unread/','inbox_unread')
 
     main(args, loglevel)
 
-
-#
 
