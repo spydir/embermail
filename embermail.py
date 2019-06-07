@@ -23,6 +23,24 @@ if __name__ == '__main__':
     # TODO Specify your real parameters here.
 
     parser.add_argument(
+        "-iu",
+        "--inboxunread",
+        help="downloads unread email from the inbox",
+        action="store_true")
+
+    parser.add_argument(
+        "-u",
+        "--unread",
+        help="downloads all unread email",
+        action="store_true")
+
+    parser.add_argument(
+        "-i",
+        "--inbox",
+        help="downloads all inbox email",
+        action="store_true")
+
+    parser.add_argument(
         "-d",
         "--download",
         help="downloads email metadata",
@@ -51,8 +69,16 @@ if __name__ == '__main__':
         analyze.analyze("./emails")
 
     if args.download:
-        # analyze.download_emails('emails/')
-        analyze.inbox_unread('inbox/')
+        analyze.download_emails('./all_mail/')
+
+    if args.inbox:
+        analyze.inbox_unread('./inbox/')
+
+    if args.unread:
+        analyze.inbox_unread('./unread/')
+
+    if args.inboxunread:
+        analyze.inbox_unread('./inbox-unread/')
 
     main(args, loglevel)
 

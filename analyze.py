@@ -1,9 +1,4 @@
-import json
-import os
-import itertools
-import re
-import auth
-import input_validation
+import json, os, itertools, re, auth, input_validation
 
 def read_dir(dir):
 
@@ -14,6 +9,10 @@ def read_dir(dir):
                 file_list.append(root+"/"+file)
 
     return file_list
+
+def write_dir(dir):
+    if not os.path.exists(dir):
+        os.makedirs(dir)
 
 def print_files(files):
     for file in files:
@@ -64,13 +63,14 @@ def proccess_email(uid,time,sender,to,subject,labels):
 
     return email_details
 
-def download_emails(folder):
+def download_emails(dir):
     session, username = auth.password()
     emails = session.all_mail().mail()
 
     for email in emails:
 
-        writefile = folder+username + "_"+ email.uid +'.json'
+        write_dir(dir)
+        writefile = dir+username + "_"+ email.uid +'.json'
         f = open(writefile, "w")
         email.fetch()
         print email.uid, input_validation.subject(email.subject)
@@ -82,13 +82,52 @@ def download_emails(folder):
 
     return emails
 
-def inbox_unread(folder):
+def inbox_unread(dir):
     session, username = auth.password()
     emails = session.inbox().mail(unread=True)
 
     for email in emails:
 
-        writefile = folder+username + "_"+ email.uid +'.json'
+        write_dir(dir)
+        writefile = dir + username + "_" + email.uid + '.json'
+        f = open(writefile, "w")
+        email.fetch()
+        print email.uid, input_validation.subject(email.subject)
+        email_details = proccess_email(email.uid,email.sent_at,email.fr,email.to,email.subject,email.labels)
+        f.write(email_details)
+        f.close()
+
+    session.logout()
+
+    return emails
+
+def inbox(dir):
+    session, username = auth.password()
+    emails = session.inbox().mail()
+
+    for email in emails:
+
+        write_dir(dir)
+        writefile = dir + username + "_" + email.uid + '.json'
+        f = open(writefile, "w")
+        email.fetch()
+        print email.uid, input_validation.subject(email.subject)
+        email_details = proccess_email(email.uid,email.sent_at,email.fr,email.to,email.subject,email.labels)
+        f.write(email_details)
+        f.close()
+
+    session.logout()
+
+    return emails
+
+def unread(dir):
+    session, username = auth.password()
+    emails = session.all_mail().mail(unread=True)
+
+    for email in emails:
+
+        write_dir(dir)
+        writefile = dir + username + "_" + email.uid + '.json'
         f = open(writefile, "w")
         email.fetch()
         print email.uid, input_validation.subject(email.subject)
