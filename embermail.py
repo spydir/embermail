@@ -1,8 +1,8 @@
 # !/usr/bin/env python
 #
 
-import analyze, argparse, logging, downloads
-
+import analyze, argparse, logging
+from utils import downloads
 
 # Gather our code in a main() function
 def main(args, loglevel):

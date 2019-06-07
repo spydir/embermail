@@ -1,5 +1,6 @@
-import json, os, itertools, re, auth, input_validation
-from files import read_dir
+import json, itertools, re
+from utils.files import read_dir
+from utils import input_validation
 
 
 def get_values(files,key):
