@@ -68,10 +68,25 @@ def download_emails(folder):
     session, username = auth.password()
     emails = session.all_mail().mail()
 
-
-
     for email in emails:
 
+        writefile = folder+username + "_"+ email.uid +'.json'
+        f = open(writefile, "w")
+        email.fetch()
+        print email.uid, input_validation.subject(email.subject)
+        email_details = proccess_email(email.uid,email.sent_at,email.fr,email.to,email.subject,email.labels)
+        f.write(email_details)
+        f.close()
+
+    session.logout()
+
+    return emails
+
+def inbox_unread(folder):
+    session, username = auth.password()
+    emails = session.inbox().mail(unread=True)
+
+    for email in emails:
 
         writefile = folder+username + "_"+ email.uid +'.json'
         f = open(writefile, "w")

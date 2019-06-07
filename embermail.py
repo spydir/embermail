@@ -51,7 +51,8 @@ if __name__ == '__main__':
         analyze.analyze("./emails")
 
     if args.download:
-        analyze.download_emails('emails/')
+        # analyze.download_emails('emails/')
+        analyze.inbox_unread('inbox/')
 
     main(args, loglevel)
 
