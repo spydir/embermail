@@ -1,8 +1,8 @@
 # !/usr/bin/env python
 #
 
-import analyze, argparse, logging, downloads
-
+import analyze, argparse, logging
+from utils import downloads
 
 # Gather our code in a main() function
 def main(args, loglevel):
@@ -61,6 +61,7 @@ if __name__ == '__main__':
 
     if args.analyze:
         analyze.analyze("./emails")
+        analyze.comapare_dirs('./inbox_unread/20190607-125339','./inbox_unread/20190607-130503')
 
     if args.download:
         downloads.download('./all_mail/','all_mail')
@@ -76,4 +77,7 @@ if __name__ == '__main__':
 
     main(args, loglevel)
 
+
+if __name__ == '__main__':
+    downloads.download('./inbox/', 'inbox')
 
