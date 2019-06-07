@@ -1,20 +1,22 @@
-import os
+import os, time
 
-def read_dir(dir):
+def read_dir(dirname):
 
     file_list = []
-    for root, dirs, files in os.walk(dir):
+    for root, dirs, files in os.walk(dirname):
         for file in files:
             if file.endswith(".json"):
                 file_list.append(root+"/"+file)
 
     return file_list
 
-def write_dir(dir):
-    if not os.path.exists(dir):
-        os.makedirs(dir)
+def write_dir(dirname):
+    timestr = time.strftime("%Y%m%d-%H%M%S")
+    directory = dirname + timestr + "/"
+    if not os.path.exists(directory):
+        os.makedirs(directory)
 
-    return dir
+    return directory
 
 def print_files(files):
     for file in files:

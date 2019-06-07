@@ -3,6 +3,7 @@
 
 import analyze, argparse, logging, downloads
 
+
 # Gather our code in a main() function
 def main(args, loglevel):
     logging.basicConfig(format="%(levelname)s: %(message)s", level=loglevel)

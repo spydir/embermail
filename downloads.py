@@ -1,4 +1,4 @@
-import json, os, itertools, re, auth, input_validation
+import auth, input_validation
 from analyze import proccess_email
 from files import write_dir
 
@@ -38,10 +38,7 @@ def download(dirname, labels):
         except TypeError:
             pass
 
-
         f.close()
-
-
 
     session.logout()
 

@@ -1,4 +1,5 @@
-import json, os, itertools, re, auth, input_validation, files
+import json, os, itertools, re, auth, input_validation
+from files import read_dir
 
 
 def get_values(files,key):
@@ -15,6 +16,7 @@ def get_values(files,key):
 
     return list
 
+
 def sort_values(values):
     values_list = []
     for key, value in itertools.groupby(sorted(values)):
@@ -24,15 +26,18 @@ def sort_values(values):
     sorted_values = sorted(values_list,reverse=True)
     return sorted_values
 
+
 def print_values(values, number):
     for i in sort_values(values)[:number]:
         print i
+
 
 def analyze(dir):
     files = read_dir(dir)
     senders = get_values(files,'sender')
     subjects = get_values(files, 'subject')
     print_values(senders,10)
+
 
 def proccess_email(uid,time,sender,to,subject,labels):
     # print uid,input_validation.to(to)
