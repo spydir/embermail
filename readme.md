@@ -6,12 +6,12 @@ embermail was developed as a solution to users who receive large quantities of e
 *It is an assumption that all email accounts are gmail accounts or this version of embermail.*
 
 
-#####Problem Statement:
+##### Problem Statement:
 
 The user must maintain several email accounts across multiple personal and work functions. This creates a high volume of email that is difficult to filter and requires frequent and laborious manual review. 
 
 
-#####Problem Solving Approach:
+##### Problem Solving Approach:
 
 
 - Which email account receives the highest volume *important* email?
@@ -20,7 +20,7 @@ The user must maintain several email accounts across multiple personal and work 
 - What is the best labeling strategy for future searching, per account?
 
 
-#####Simplest Manual Workflow without mail clients:
+##### Simplest Manual Workflow without mail clients:
 
 1. Enable gmail hot keys: https://support.google.com/mail/answer/6594?co=GENIE.Platform%3DDesktop&hl=en
 2. Open Gmail native and use the search terms label:inbox label:unread
@@ -28,7 +28,7 @@ The user must maintain several email accounts across multiple personal and work 
 4. Use "X" to select email(s), "L" to apply labels, "Shift+I" to mark as read, "E" to archive and "Shift+3" to delete.
 
 
-#####Possible Solution:
+##### Possible Solution:
 
 It may be possible to embermail to "learn" which types of emails a user regularly labels, reads, archives, or simply deletes. This could be true across all email accounts and potentially across multiple email providers. 
 
