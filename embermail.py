@@ -60,8 +60,8 @@ if __name__ == '__main__':
         loglevel = logging.INFO
 
     if args.analyze:
-        analyze.analyze("./emails")
-        analyze.comapare_dirs('./inbox_unread/20190607-125339','./inbox_unread/20190607-130503')
+        # analyze.analyze("./emails")
+        analyze.comapare_dirs('./inbox/')
 
     if args.download:
         downloads.download('./all_mail/','all_mail')
@@ -77,7 +77,7 @@ if __name__ == '__main__':
 
     main(args, loglevel)
 
-
-if __name__ == '__main__':
-    downloads.download('./inbox/', 'inbox')
+#
+# if __name__ == '__main__':
+#     downloads.download('./inbox/', 'inbox')
 
