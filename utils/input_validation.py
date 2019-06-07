@@ -37,9 +37,11 @@ def time(email_time):
 
     return time
 
-def labels(email_labels):
+def labels(email_labels, email_flags):
     labels = ""
+    flags = ""
 
+    # gmail labels
     for label in email_labels:
         clean_label = re.sub('[\\\]', '', label)
         if label != None:
@@ -48,5 +50,28 @@ def labels(email_labels):
             if label == email_labels[-1]:
                 labels = labels + '"' + clean_label + '"'
 
+    #imap flags
+
+    for flag in email_flags:
+        clean_flag = re.sub('[\\\]', '', flag)
+        if flag != None:
+            if flag != email_flags[-1]:
+                flags = flags + '"' + clean_flag + '"' + ","
+            if flag == email_flags[-1]:
+                flags = flags + '"' + clean_flag + '"'
+
+    if 'seen' not in flags.lower():
+        if labels != "":
+            labels = labels + ',"Unread"'
+        if labels == "":
+            labels = labels + '"Unread"'
+
+    if 'seen' in flags.lower():
+        if labels != "":
+            labels = labels + ',"Read"'
+        if labels == "":
+            labels = labels + '"Read"'
+
     return labels
+
 

@@ -1,6 +1,7 @@
 import json, itertools, re
-from utils.files import read_dir
+from utils.files import read_dir,print_files
 from utils import input_validation
+from jsondiff import diff
 
 
 def get_values(files,key):
@@ -34,13 +35,13 @@ def print_values(values, number):
 
 
 def analyze(dir):
-    files = read_dir(dir)
-    senders = get_values(files,'sender')
-    subjects = get_values(files, 'subject')
+    roots,files,paths = read_dir(dir)
+    senders = get_values(paths,'sender')
+    subjects = get_values(paths, 'subject')
     print_values(senders,10)
 
 
-def proccess_email(uid,time,sender,to,subject,labels):
+def proccess_email(uid,time,sender,to,subject,labels,flags):
     # print uid,input_validation.to(to)
 
     email_details = '{"uid":"' + uid + \
@@ -48,7 +49,27 @@ def proccess_email(uid,time,sender,to,subject,labels):
                     '","sender":"' + input_validation.sender(sender) + \
                     '","to":[' + input_validation.to(to) + ']' + \
                     ',"subject":"' + input_validation.subject(subject) + \
-                    '","labels":[' + input_validation.labels(labels)+ ']}'
+                    '","labels":[' + input_validation.labels(labels, flags) + ']}'
 
     return email_details
 
+
+def comapare_dirs(dir1,dir2):
+    roots1, files1, paths1 = read_dir(dir1)
+    roots2, files2, paths2 = read_dir(dir2)
+
+    for i in list(set(files1)&set(files2)):
+        string1 = roots1[0] + '/' + i
+        string2 = roots2[0] + '/' + i
+        print email_diff(string1, string2)
+
+
+def email_diff(email1, email2):
+
+    e1 = open(email1,'r')
+    e2 = open(email2,'r')
+
+
+    difference = diff(json.loads(e1.read()), json.loads(e2.read()))
+
+    return difference

@@ -31,8 +31,9 @@ def download(dirname, labels):
         try:
             email.fetch()
 
-            print email.uid, input_validation.subject(email.subject)
-            email_details = proccess_email(email.uid,email.sent_at,email.fr,email.to,email.subject,email.labels)
+            print email.uid, input_validation.subject(email.subject), email.gmail.current_mailbox, email.flags
+
+            email_details = proccess_email(email.uid,email.sent_at,email.fr,email.to,email.subject,email.labels,email.flags)
             f.write(email_details)
 
         except TypeError:
