@@ -1,24 +1,25 @@
 # embermail
 
-embermail was developed as a solution to users who receive large quantities of email a day that are difficult to filter and must reviewed manually. This high volume of mail makes for frustrating evenings or  the occasional weekend, leading to the desire to burn all the mail to *embers*. 
+embermail was developed as a solution to users who receive large quantities of email every day that are difficult to filter and must reviewed manually. The high volume of mail makes for frustrating evenings and the occasional weekend and it leads to the desire to burn all the mail to *embers*. 
 
 
-*It is an assumption that all email accounts are gmail accounts or this version of embermail.*
+*It is an assumption that all email accounts are gmail accounts for this version of embermail.*
 
 
 ##### Problem Statement:
 
-The user must maintain several email accounts across multiple personal and work functions. This creates a high volume of email that is difficult to filter and requires frequent and laborious manual review. 
+The user must maintain several g-mail accounts across multiple personal and work functions. This creates a high volume of email that is difficult to filter and requires frequent manual review and orchestration of email filters across accounts.
 
 
 ##### Problem Solving Approach:
 
 
-- Which email account receives the highest volume *important* email?
+- Which email account receives the highest volume *important* email? 
 - Which sender, across all accounts, sends the highest volume *important* email?
 - What is the best filtering strategy to simplify manual review?
 - What is the best labeling strategy for future searching, per account?
 
+*Important is defined by the user rather than google, since google doesn't check across accounts.*
 
 ##### Simplest Manual Workflow without mail clients:
 
