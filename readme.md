@@ -29,6 +29,13 @@ The user must maintain several g-mail accounts across multiple personal and work
 4. Use "X" to select email(s), "L" to apply labels, "Shift+I" to mark as read, "E" to archive and "Shift+3" to delete.
 
 
+##### Dependencies 
+1. python 2.7
+2. virtualenv 
+3. https://github.com/charlierguo/gmail
+
+This gmail project must be installed in your virutalenv via python setup.py install
+
 ##### Possible Solution:
 
 It may be possible to embermail to "learn" which types of emails a user regularly labels, reads, archives, or simply deletes. This could be true across all email accounts and potentially across multiple email providers. 
