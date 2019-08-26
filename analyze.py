@@ -14,7 +14,7 @@ def get_values(files,key):
             parsed_json = json.loads(string)
             list.append(parsed_json[key])
         except ValueError:
-            print ValueError, file
+            print(ValueError, file)
 
     return list
 
@@ -31,7 +31,7 @@ def sort_values(values):
 
 def print_values(values, number):
     for i in sort_values(values)[:number]:
-        print i
+        print(i)
 
 
 def analyze(dir):
@@ -59,38 +59,45 @@ def comapare_dirs(parentdir):
     proots, pfiles, ppaths = read_dir(parentdir)
     roots = sorted(set(proots))
 
-    print roots[-2],roots[-1]
+    try:
+        print(roots[-2],roots[-1])
 
-    roots1, files1, paths1 = read_dir(roots[-2])
-    roots2, files2, paths2 = read_dir(roots[-1])
+        roots1, files1, paths1 = read_dir(roots[-2])
+        roots2, files2, paths2 = read_dir(roots[-1])
 
-    for i in sorted(set(files1)&set(files2)):
-        string1 = roots1[0] + '/' + i
-        string2 = roots2[0] + '/' + i
+        for i in sorted(set(files1)&set(files2)):
+            string1 = roots1[0] + '/' + i
+            string2 = roots2[0] + '/' + i
 
 
-        diff = email_diff(string1, string2)
+            diff = email_diff(string1, string2)
 
-        if diff != {}:
-            print diff
+            if diff != None:
+                print(diff)
+    except IndexError:
+        print("Nothing to compare! Try downloading the data a second time so that there are two directories to compare.")
+        pass
 
 
 def email_diff(email1, email2):
-    difference = {}
-
-
+    difference = None
 
     try:
         e1 = json.loads(open(email1, 'r').read())
         e2 = json.loads(open(email2, 'r').read())
         difference = diff(e1, e2, syntax='explicit')
+        if difference == {}:
+            difference = None
+            return difference
+
         difference = e1['uid'], difference
+        print difference
 
     except ValueError:
-        print ValueError
+        print(ValueError)
 
     except UnboundLocalError:
-        print UnboundLocalError
+        print(UnboundLocalError)
 
 
     return difference

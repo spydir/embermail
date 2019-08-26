@@ -1,6 +1,6 @@
-import auth, input_validation
+from utils import auth, input_validation
+from utils.files import write_dir
 from analyze import proccess_email
-from files import write_dir
 
 
 def mailbox(labels):
@@ -31,7 +31,7 @@ def download(dirname, labels):
         try:
             email.fetch()
 
-            print email.uid, input_validation.subject(email.subject), email.gmail.current_mailbox, email.flags
+        # print((email.uid, input_validation.subject(email.subject), email.gmail.current_mailbox, email.flags))
 
             email_details = proccess_email(email.uid,email.sent_at,email.fr,email.to,email.subject,email.labels,email.flags)
             f.write(email_details)

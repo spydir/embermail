@@ -35,13 +35,13 @@ if __name__ == '__main__':
         action="store_true")
 
     parser.add_argument(
-        "-d",
-        "--download",
+        "-a",
+        "--all",
         help="downloads email metadata",
         action="store_true")
 
     parser.add_argument(
-        "-a",
+        "-al",
         "--analyze",
         help="analyzes email metadata",
         action="store_true")
@@ -61,9 +61,9 @@ if __name__ == '__main__':
 
     if args.analyze:
         # analyze.analyze("./emails")
-        analyze.comapare_dirs('./inbox/')
+        analyze.comapare_dirs('./all_mail/')
 
-    if args.download:
+    if args.all:
         downloads.download('./all_mail/','all_mail')
 
     if args.inbox:

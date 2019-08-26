@@ -12,7 +12,7 @@ def get_creds(configFile):
 
 def token():
     username, password, access_token = get_creds("./config.json")
-    print username, access_token
+    print(username, access_token)
     session = gmail.authenticate(username, access_token)
 
     return session, username

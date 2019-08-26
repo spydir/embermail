@@ -29,4 +29,4 @@ def write_dir(dirname):
 
 def print_files(files):
     for file in files:
-        print file
+        print(file)
