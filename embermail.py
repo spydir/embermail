@@ -61,7 +61,7 @@ if __name__ == '__main__':
 
     if args.analyze:
         # analyze.analyze("./emails")
-        analyze.comapare_dirs('./all_mail/')
+        analyze.comapare_dirs('./inbox/')
 
     if args.all:
         downloads.download('./all_mail/','all_mail')

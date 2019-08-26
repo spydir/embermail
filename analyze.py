@@ -65,27 +65,34 @@ def comapare_dirs(parentdir):
         roots1, files1, paths1 = read_dir(roots[-2])
         roots2, files2, paths2 = read_dir(roots[-1])
 
+        changes = []
         for i in sorted(set(files1)&set(files2)):
             string1 = roots1[0] + '/' + i
             string2 = roots2[0] + '/' + i
 
 
             diff = email_diff(string1, string2)
-
+        
             if diff != None:
-                print(diff)
+                changes.append(diff)
+        
+        for i in changes:
+            print i
+                
     except IndexError:
         print("Nothing to compare! Try downloading the data a second time so that there are two directories to compare.")
         pass
 
 
 def email_diff(email1, email2):
+
     difference = None
 
     try:
         e1 = json.loads(open(email1, 'r').read())
         e2 = json.loads(open(email2, 'r').read())
         difference = diff(e1, e2, syntax='explicit')
+
         if difference == {}:
             difference = None
             return difference
@@ -101,3 +108,5 @@ def email_diff(email1, email2):
 
 
     return difference
+
+          
