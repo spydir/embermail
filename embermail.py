@@ -60,8 +60,8 @@ if __name__ == '__main__':
         loglevel = logging.INFO
 
     if args.analyze:
-        # analyze.analyze("./emails")
-        analyze.comapare_dirs('./inbox/')
+        analyze.analyze("./inbox/")
+        # analyze.comapare_dirs('./inbox/')
 
     if args.all:
         downloads.download('./all_mail/','all_mail')

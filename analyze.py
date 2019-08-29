@@ -38,7 +38,16 @@ def analyze(dir):
     roots,files,paths = read_dir(dir)
     senders = get_values(paths,'sender')
     subjects = get_values(paths, 'subject')
+    recipients = get_values(paths,'to')
+
+    print("Top 10 Senders \n################# \n")
     print_values(senders,10)
+
+    print("\n\nTop 10 Subjects \n################# \n")
+    print_values(subjects,10)
+
+    print("\n\nTop 10 Recipients \n################# \n")
+    print_values(recipients,10)
 
 
 def proccess_email(uid,time,sender,to,subject,labels,flags):
@@ -72,7 +81,7 @@ def comapare_dirs(parentdir):
 
 
             diff = email_diff(string1, string2)
-        
+
             if diff != None:
                 changes.append(diff)
         
